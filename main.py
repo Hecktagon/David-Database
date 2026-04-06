@@ -54,8 +54,8 @@ def main(infile1, infile2, id_col, knowledgebase_directory, numeric_col, only_co
 
 if __name__ == "__main__":
     main(
-        infile1="sample_rates_from_deuterater1.csv",
-        infile2="sample_rates_from_deuterater2.tsv",
+        infile1="inputs/sample_rates_from_deuterater1.csv",
+        infile2="inputs/sample_rates_from_deuterater2.tsv",
         id_col="analyte_id",
         knowledgebase_directory="knowledgebase",
         numeric_col="Abundance rate"

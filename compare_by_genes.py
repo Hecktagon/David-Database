@@ -68,7 +68,7 @@ def compare_by_genes(column_of_interest, file1, file2, genes1, genes2=None):
     if not genes2:
         return compare_by_genes_paired(file1, file2, genes1, column_of_interest)
     else:
-        return compare_by_genes_independent(infile1, infile2, genes1, genes2, col_of_interest)
+        return compare_by_genes_independent(file1, file2, genes1, genes2, col_of_interest)
 
 
 if __name__ == "__main__":
