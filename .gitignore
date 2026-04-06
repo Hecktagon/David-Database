@@ -2,3 +2,5 @@
 .idea
 knowledgebase/*
 !knowledgebase/.gitkeep
+outputs/*
+!outputs/.gitkeep
