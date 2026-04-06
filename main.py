@@ -9,7 +9,7 @@ def main(infile1, infile2, id_col, knowledgebase_directory, numeric_col, only_co
     in_file1: A filepath to a file containing uniprot IDs and other information.
     in_file2: Another filepath to compare.
     id_col: Name of uniprot ID column in the input files.
-    knowledgebase_directory: Path to DAVID knowledgebase directory.
+    knowledgebase_directory: Path to DAVID knowled gebase directory.
     numeric_col: The numerical column of interest from the deuterater inputs to be used in T-testing.
     only_common_genes: keeps only shared annotation genes and runs a pairwise T-test if true, else does an independent (Welch's) T-test.
     n_top_annotations: The number of most-common annotations between the two input files to keep.
@@ -27,28 +27,8 @@ def main(infile1, infile2, id_col, knowledgebase_directory, numeric_col, only_co
     common_annotations_df = find_common_terms(annotations_df1, annotations_df2, shared_outfile, only_common_genes=only_common_genes, n_top_annotations=n_top_annotations)
     print(common_annotations_df.head())
 
-    # TODO: move this section to compare_by_genes.py
-    t_results = {
-        "Category-Term": [],
-        "Count": [],
-        "T_stat": [],
-        "P_value": []
-    }
-    for i, row in common_annotations_df.iterrows():
-        if only_common_genes:
-            genes1 = row["Genes"][0]
-            genes2 = None
-        else:
-            genes1, genes2 = row["Genes"]
-
-        t_stat, p_val = compare_by_genes(numeric_col, infile1, infile2, genes1, genes2)
-
-        t_results["Category-Term"].append(row["Category-Term"])
-        t_results["Count"].append(row["Shared-Count"])
-        t_results["T_stat"].append(t_stat)
-        t_results["P_value"].append(p_val)
-
-    t_results_df = pd.DataFrame(t_results)
+    # run a t-test (pairwise if only_common_genes, else Welch's) on the two input files for the list of genes in each of the top n shared annotations.
+    t_results_df = compare_by_genes(common_annotations_df, numeric_col, id_col, infile1, infile2, only_common_genes=only_common_genes)
     t_results_df.to_csv(final_outfile, sep="\t")
 
 
@@ -58,5 +38,6 @@ if __name__ == "__main__":
         infile2="inputs/sample_rates_from_deuterater2.tsv",
         id_col="analyte_id",
         knowledgebase_directory="knowledgebase",
-        numeric_col="Abundance rate"
+        numeric_col="Abundance rate",
+        only_common_genes=True
     )
