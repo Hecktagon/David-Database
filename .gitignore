@@ -4,3 +4,5 @@ knowledgebase/*
 !knowledgebase/.gitkeep
 outputs/*
 !outputs/.gitkeep
+inputs/*
+!inputs/.gitkeep
