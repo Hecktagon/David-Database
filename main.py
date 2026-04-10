@@ -1,8 +1,8 @@
-import pandas as pd
-from extract_gene_list import extract_id_column
-from functional_annotation import do_functional_annotation
-from find_common_terms import find_common_terms
-from compare_by_genes import compare_by_genes
+from functional_annotation.extract_gene_list import extract_id_column
+from functional_annotation.functional_annotation import do_functional_annotation
+from functional_annotation.find_common_terms import find_common_terms
+from functional_annotation.compare_by_genes import compare_by_genes
+from ui.inputs_ui import run_gui
 
 def main(infile1, infile2, id_col, numeric_col, only_common_genes = True, n_top_annotations = 10, knowledgebase_directory = "knowledgebase", annotation_outfile1 = "outputs/functional_annotation_results1.tsv", annotation_outfile2 = "outputs/functional_annotation_results_2.tsv", shared_outfile = "outputs/shared_annotation_genes.tsv", final_outfile = "outputs/t_test_results.tsv"):
     """
@@ -33,19 +33,21 @@ def main(infile1, infile2, id_col, numeric_col, only_common_genes = True, n_top_
 
 
 if __name__ == "__main__":
+    inputs = run_gui()
+
     main(
         # Make sure these inputs match your input files.
-        infile1="inputs/sample_rates_from_deuterater1.csv",
-        infile2="inputs/sample_rates_from_deuterater2.tsv",
-        id_col="analyte_id",
-        numeric_col="Abundance rate",
+        infile1=inputs["infile1"],
+        infile2=inputs["infile2"],
+        id_col=inputs["id_col"],
+        numeric_col=inputs["numeric_col"],
 
         # Optionally, change these settings as necessary.
-        only_common_genes=True,
-        n_top_annotations=10,
-        knowledgebase_directory="knowledgebase",
-        annotation_outfile1="outputs/functional_annotation_results1.tsv",
-        annotation_outfile2="outputs/functional_annotation_results_2.tsv",
-        shared_outfile="outputs/shared_annotation_genes.tsv",
-        final_outfile="outputs/t_test_results.tsv"
+        only_common_genes=inputs["only_common_genes"],
+        n_top_annotations=inputs["n_top_annotations"],
+        knowledgebase_directory=inputs["knowledgebase_directory"],
+        annotation_outfile1=inputs["annotation_outfile1"],
+        annotation_outfile2=inputs["annotation_outfile2"],
+        shared_outfile=inputs["shared_outfile"],
+        final_outfile=inputs["final_outfile"]
     )
