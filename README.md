@@ -16,7 +16,11 @@
 ### 3. Run main.py
 
 - Run main.py.
-- Fill in the top 4 values in the UI menu to match your input files. Optionally change the other settings as needed.
+- Fill in the top 4 values (seen below) in the UI menu to match your input files. Optionally change the other settings as needed.
+  1. *Input File 1: One input file containing at least an ID column and a numeric column to compare.*
+  2. *Input File 2: A second input file for comparison. ID column and numeric column headers must match.* 
+  3. *ID Column: The column header for the ID column in both input files.* 
+  4. *Numeric Column: The column header for the numeric column of interest in both input files.*
 - Outputs will be written to the `outputs` folder.
 
 
