@@ -85,7 +85,7 @@ def do_functional_annotation(input_genes, knowledgebase_directory, outfile, min_
 
         category_name = os.path.basename(filepath).replace(".txt", "")
 
-        print(f"Processing {category_name}")
+        print(f"\tProcessing {category_name}")
 
         term_to_genes, background_genes = load_mapping_file(filepath)
 
@@ -103,7 +103,7 @@ def do_functional_annotation(input_genes, knowledgebase_directory, outfile, min_
         all_results.extend(results)
 
     if not all_results:
-        print("No enrichment found.")
+        print("\tWARNING: No enrichment found.")
         return
 
     results_df = pd.DataFrame(all_results)
@@ -123,7 +123,7 @@ def do_functional_annotation(input_genes, knowledgebase_directory, outfile, min_
     sep = "\t" if outfile.endswith(".tsv") else ","
     results_df.to_csv(outfile, sep=sep, index=False)
 
-    print(f"\nResults written to {outfile}")
+    print(f"\n\tResults written to {outfile}")
 
     return results_df
 

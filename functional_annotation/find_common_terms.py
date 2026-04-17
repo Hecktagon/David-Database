@@ -77,6 +77,6 @@ def find_common_terms(df1, df2, outfile, only_common_genes=True, n_top_annotatio
     if outfile:
         sep = "\t" if outfile.endswith(".tsv") else ","
         df_result.to_csv(outfile, sep=sep, index=False)
-        print(f"Common term results written to {outfile}")
+        print(f"\tCommon term results written to {outfile}")
 
     return df_result

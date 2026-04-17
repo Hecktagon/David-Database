@@ -55,12 +55,12 @@ Results are written to a shared annotations output file.
 
 ### Stage 5 — Statistical Comparison (compare_by_genes)  
 
-For each of the top shared annotation terms, a t-test is run on the numeric column of interest (e.g. abundance rate) between the two input files, using only the genes belonging to that term:
+For each of the top shared annotation terms, a t-test is run and a median fold change (input1/input2) is calculated on the numeric column of interest (e.g. abundance rate) between the two input files, using only the genes belonging to that term:  
 
-only_common_genes=True → paired t-test on the shared gene set
-only_common_genes=False → Welch's independent t-test on the separate gene lists
+only_common_genes=True → pairwise t-test on the shared gene set, pairwise median fold change (median of the ratios of each pair)
+only_common_genes=False → Welch's independent t-test on the separate gene lists, non-pairwise fold change (ratio of medians of both gene lists)
 
-The final output is a .tsv file with the t-statistic, p-value, and gene count for each annotation term.
+The final output is a .tsv file with the t-statistic, p-value, median fold change (input1/input2), and non-dropped gene count for each annotation term.
 
 
 

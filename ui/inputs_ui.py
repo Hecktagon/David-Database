@@ -15,7 +15,7 @@ FIELDS = [
     ("Annotation Outfile 1",  "annotation_outfile1",   "outputs/functional_annotation_results1.tsv",False, False),
     ("Annotation Outfile 2",  "annotation_outfile2",   "outputs/functional_annotation_results_2.tsv",False,False),
     ("Shared Outfile",        "shared_outfile",        "outputs/shared_annotation_genes.tsv",       False, False),
-    ("Final Outfile",         "final_outfile",         "outputs/t_test_results.tsv",                False, False),
+    ("Final Outfile",         "final_outfile",         "outputs/final_comparison_results.tsv",      False, False),
 ]
 
 def run_gui():
