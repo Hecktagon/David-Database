@@ -32,6 +32,7 @@ def paired_t_test_dfs_by_col(df1, df2, col):
 
 
 def compare_by_genes_paired(file1, file2, genes, numeric_col, gene_col):
+    # Runs a paired t-test between two files for the numeric_col. Requires one genes list of shared genes between the two files.
     df1 = file_to_numeric_df(file1, numeric_col, genes, gene_col=gene_col)
     df2 = file_to_numeric_df(file2, numeric_col, genes, gene_col=gene_col)
 
